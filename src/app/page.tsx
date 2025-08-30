@@ -7,7 +7,7 @@ import {
   KeyFeaturesSection,
   CTASection,
   Footer
-} from '../components';
+} from '../components/landing';
 
 export default function Home() {
   return (
