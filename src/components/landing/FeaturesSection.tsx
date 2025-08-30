@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function FeaturesSection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -7,7 +9,7 @@ export default function FeaturesSection() {
             Pick your <span className="text-blue-600">journey</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Whether you're a government creating tenders or a vendor submitting bids, 
+            Whether you&apos;re a government creating tenders or a vendor submitting bids, 
             Althara Pacta offers a transparent path to public procurement.
           </p>
         </div>
@@ -25,9 +27,9 @@ export default function FeaturesSection() {
               Create transparent tenders with immutable document storage. Upload specifications to Filecoin 
               and manage the entire procurement process with full public visibility.
             </p>
-            <button className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+            <Link href="/connect-wallet-government" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
               Create Tender →
-            </button>
+            </Link>
           </div>
 
           {/* Vendor Card */}
@@ -42,9 +44,9 @@ export default function FeaturesSection() {
               Submit competitive bids with secure document storage. Access transparent tender information 
               and participate in fair, corruption-free procurement processes.
             </p>
-            <button className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+            <Link href="/connect-wallet-vendor" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
               Submit Bid →
-            </button>
+            </Link>
           </div>
 
           {/* Public Card */}
@@ -60,9 +62,9 @@ export default function FeaturesSection() {
               Access all tender documents, bids, and transactions publicly. Verify transparency 
               and audit the entire procurement process with blockchain-verified data.
             </p>
-            <button className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+            <Link href="/tenders" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
               Explore Tenders →
-            </button>
+            </Link>
           </div>
         </div>
       </div>

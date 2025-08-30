@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,25 +13,25 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AP</span>
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 flex items-center justify-center">
+                <Image src="/althara pacta logo.png" alt="Althara Pacta" width={32} height={32} />
               </div>
               <span className="text-xl font-bold text-gray-900">Althara Pacta</span>
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link href="/connect-wallet-government" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Sign up as a government
-            </button>
-            <button className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </Link>
+            <Link href="/connect-wallet-vendor" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Sign up as a vendor
-            </button>
-            <button className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </Link>
+            <Link href="/tenders" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               See all tenders
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -49,15 +51,15 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-gray-100 py-4">
             <div className="flex flex-col space-y-4">
-              <button className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-left">
+              <Link href="/connect-wallet-government" className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-left">
                 Sign up as a government
-              </button>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-left">
+              </Link>
+              <Link href="/connect-wallet-vendor" className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-left">
                 Sign up as a vendor
-              </button>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-left">
+              </Link>
+              <Link href="/tenders" className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-left">
                 See all tenders
-              </button>
+              </Link>
             </div>
           </div>
         )}
