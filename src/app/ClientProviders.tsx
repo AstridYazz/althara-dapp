@@ -1,17 +1,27 @@
 "use client";
 
+import '@rainbow-me/rainbowkit/styles.css';
+
+import {
+  getDefaultConfig,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiConfig, createConfig } from "wagmi";
-import { sepolia } from "@wagmi/core/chains";
-import { http } from "wagmi";
+import { WagmiConfig } from "wagmi";
+import {
+  sepolia,
+} from 'wagmi/chains';
+import { metaMask } from "wagmi/connectors";
 import { ReactNode } from "react";
 
-const config = createConfig({
+const config = getDefaultConfig({
+  appName: 'Althara Pacta',
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID!,
   chains: [sepolia],
-  transports: {
-    [sepolia.id]: http(process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL || "https://eth-sepolia.g.alchemy.com/v2/" + process.env.NEXT_PUBLIC_ALCHEMY_API_KEY),
-  },
+  ssr: true, 
 });
+
 
 const queryClient = new QueryClient();
 
@@ -23,7 +33,9 @@ export default function ClientProviders({ children }: ClientProvidersProps) {
   return (
     <WagmiConfig config={config}>
       <QueryClientProvider client={queryClient}>
-        {children}
+        <RainbowKitProvider>
+          {children}
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiConfig>
   );
