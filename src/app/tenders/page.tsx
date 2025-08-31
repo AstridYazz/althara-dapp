@@ -1,39 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-type Tender = {
-  walletAddress: string;
-  governanceName: string;
-  status: string;
-  bids: number;
-  timeLeft: string;
-};
-
-const mockTenders: Tender[] = [
+const mockData = [
   {
-    walletAddress: "0x1234...abcd",
-    governanceName: "Alpha DAO",
-    status: "Open",
+    wallet: '0x123...abc',
+    governance: 'Althara DAO',
+    status: 'Active',
+    bids: 5,
+    timeLeft: '2d 4h',
+  },
+  {
+    wallet: '0x456...def',
+    governance: 'BetaGov',
+    status: 'Closed',
     bids: 12,
-    timeLeft: "2d 4h",
+    timeLeft: '0d 0h',
   },
-  {
-    walletAddress: "0x5678...efgh",
-    governanceName: "Beta Governance",
-    status: "Closed",
-    bids: 8,
-    timeLeft: "0d 0h",
-  },
-  // Add more mock data as needed
+  // Add more mock items as needed
 ];
 
-export default function DashboardPage() {
-  const [search, setSearch] = useState("");
+export default function Dashboard() {
+  const [search, setSearch] = useState('');
 
-  const filteredTenders = mockTenders.filter(
-    (tender) =>
-      tender.governanceName.toLowerCase().includes(search.toLowerCase()) ||
-      tender.walletAddress.toLowerCase().includes(search.toLowerCase())
+  const filteredData = mockData.filter(
+    item =>
+      item.governance.toLowerCase().includes(search.toLowerCase()) ||
+      item.wallet.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -47,48 +39,47 @@ export default function DashboardPage() {
       </nav>
 
       {/* Search */}
-      <div className="max-w-4xl mx-auto mt-8">
+      <div className="max-w-2xl mx-auto mt-8">
         <input
           type="text"
           placeholder="Search by governance name or wallet address"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full px-4 py-2 border rounded mb-6"
+          onChange={e => setSearch(e.target.value)}
+          className="w-full px-4 py-2 border rounded"
         />
+      </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white rounded shadow">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 text-left">Wallet Address</th>
-                <th className="px-4 py-2 text-left">Governance Name</th>
-                <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Bids</th>
-                <th className="px-4 py-2 text-left">Time Left</th>
+      {/* Table */}
+      <div className="max-w-4xl mx-auto mt-8">
+        <table className="w-full border-collapse bg-white shadow rounded">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="px-4 py-2 text-left">Wallet Address</th>
+              <th className="px-4 py-2 text-left">Governance Name</th>
+              <th className="px-4 py-2 text-left">Status</th>
+              <th className="px-4 py-2 text-left">Bids</th>
+              <th className="px-4 py-2 text-left">Time Left</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.map((item, idx) => (
+              <tr key={idx} className="border-t">
+                <td className="px-4 py-2">{item.wallet}</td>
+                <td className="px-4 py-2">{item.governance}</td>
+                <td className="px-4 py-2">{item.status}</td>
+                <td className="px-4 py-2">{item.bids}</td>
+                <td className="px-4 py-2">{item.timeLeft}</td>
               </tr>
-            </thead>
-            <tbody>
-              {filteredTenders.length === 0 ? (
-                <tr>
-                  <td colSpan={5} className="px-4 py-6 text-center text-gray-500">
-                    No tenders found.
-                  </td>
-                </tr>
-              ) : (
-                filteredTenders.map((tender, idx) => (
-                  <tr key={idx} className="border-t">
-                    <td className="px-4 py-2">{tender.walletAddress}</td>
-                    <td className="px-4 py-2">{tender.governanceName}</td>
-                    <td className="px-4 py-2">{tender.status}</td>
-                    <td className="px-4 py-2">{tender.bids}</td>
-                    <td className="px-4 py-2">{tender.timeLeft}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+            ))}
+            {filteredData.length === 0 && (
+              <tr>
+                <td colSpan={5} className="px-4 py-8 text-center text-gray-500">
+                  No results found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
