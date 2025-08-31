@@ -217,6 +217,23 @@ const ConnectWalletComponent = () => {
                 </p>
               </div>
 
+              <div className="flex space-x-4 mb-6">
+                <Image
+                  src="/ethereum.png" // asegúrate que el archivo esté en /public/ethereum.png
+                  alt="Ethereum Logo"
+                  width={40}
+                  height={40}
+                  className="rounded"
+                />
+                <Image
+                  src="/filecoin.png" // asegúrate que el archivo esté en /public/filecoin.png
+                  alt="Filecoin Logo"
+                  width={40}
+                  height={40}
+                  className="rounded"
+                />
+              </div>
+
               {!isCorrectNetwork && (
                 <button
                   onClick={handleSwitchNetwork}
